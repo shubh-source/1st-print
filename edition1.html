@@ -1314,6 +1314,65 @@
       }
     }
 
+    /* PHILOSOPHY (Glassmorphism) */
+    #philosophy {
+      padding: 60px 56px 120px;
+      position: relative;
+      z-index: 2;
+    }
+    .phil-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(201, 169, 110, 0.15);
+      border-radius: 24px;
+      padding: 45px 35px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.5s;
+    }
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(201, 169, 110, 0.06) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.6s;
+      pointer-events: none;
+    }
+    .glass-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(201, 169, 110, 0.35);
+    }
+    .glass-card:hover::before { opacity: 1; }
+    
+    .gc-icon {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      opacity: 0.8;
+    }
+    .gc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--gold);
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+    }
+    .gc-text {
+      font-size: 0.75rem;
+      line-height: 1.8;
+      color: rgba(240, 235, 227, 0.6);
+      font-family: 'DM Sans', sans-serif;
+    }
+
     /* RESPONSIVE */
     @media(max-width:900px) {
       #founder {
@@ -1398,6 +1457,9 @@
       .stg {
         grid-template-columns: 1fr
       }
+
+      #philosophy { padding: 40px 24px 80px; }
+      .phil-grid { grid-template-columns: 1fr; gap: 20px; }
 
       #waitlist {
         padding: 100px 28px 140px
@@ -1505,7 +1567,25 @@
     <p class="ma rv" style="transition-delay:.2s">— The Vlynxly Manifesto</p>
   </section>
 
-
+  <section id="philosophy">
+    <div class="phil-grid">
+      <div class="glass-card rv">
+        <div class="gc-icon">👁️</div>
+        <h3 class="gc-title">No Audience</h3>
+        <p class="gc-text">Your love isn't meant for a feed. There are no followers here. No likes. No performance. Just a quiet room for two.</p>
+      </div>
+      <div class="glass-card rv" style="transition-delay:.1s">
+        <div class="gc-icon">🤖</div>
+        <h3 class="gc-title">No Algorithms</h3>
+        <p class="gc-text">Your connection shouldn't be manipulated by engagement metrics. We don't read your data. We don't sell your attention.</p>
+      </div>
+      <div class="glass-card rv" style="transition-delay:.2s">
+        <div class="gc-icon">🌌</div>
+        <h3 class="gc-title">No Distance</h3>
+        <p class="gc-text">Feel closer than a text message. A space designed to sync your emotions, even when you're oceans apart.</p>
+      </div>
+    </div>
+  </section>
   <section id="founder">
     <div class="sl-label rv">The Person Behind It</div>
     <div class="founder-grid">
