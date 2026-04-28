@@ -665,7 +665,7 @@
     .ph {
       position: absolute;
       width: 220px;
-      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: all 2.5s ease-in-out;
     }
 
     .ps {
@@ -1829,7 +1829,14 @@
     const phones = document.querySelectorAll('.ph');
     let phoneClasses = ['phl-ll', 'phl-left', 'phl-center', 'phl-right', 'phl-rr'];
     
-    function rotatePhones(direction = 'next') {
+    function rotatePhones(direction = 'next', instant = false) {
+      if (instant) {
+        phones.forEach(ph => ph.style.transition = 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)');
+        setTimeout(() => {
+          phones.forEach(ph => ph.style.transition = '');
+        }, 450);
+      }
+
       if(direction === 'next') {
         phoneClasses.unshift(phoneClasses.pop());
       } else {
@@ -1847,11 +1854,11 @@
         clearInterval(phoneSliderInterval);
         const currentClass = Array.from(ph.classList).find(c => c.startsWith('phl-'));
         if (currentClass === 'phl-left' || currentClass === 'phl-ll') {
-          rotatePhones('prev');
+          rotatePhones('prev', true);
         } else if (currentClass === 'phl-right' || currentClass === 'phl-rr') {
-          rotatePhones('next');
+          rotatePhones('next', true);
         }
-        phoneSliderInterval = setInterval(() => rotatePhones('next'), 4000);
+        phoneSliderInterval = setInterval(() => rotatePhones('next'), 3000);
       });
     });
   </script>
